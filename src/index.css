@@ -5,6 +5,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 code {
@@ -12,6 +18,68 @@ code {
     monospace;
 }
 
+.full-height {
+  height: 100%;
+  width: 100vw;
+}
+
 .round-border {
   border-radius: 0px 0px 8px 8px !important;
+}
+
+.all-rounded {
+  border-radius: 8px !important;
+}
+
+.main-content {
+  overflow-x: scroll;
+  max-width: 100vw;
+  scrollbar-width: thin;
+  scrollbar-color: hsl(348, 100%, 61%) hsl(0, 0%, 86%);
+}
+/* Whole scrollbar container */
+.main-content::-webkit-scrollbar {
+  height: 8px;
+  border-radius: 12px;
+  background-color: hsl(0, 0%, 86%);
+}
+/* Where the scrollbar moves on */
+.main-content::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: hsl(0, 0%, 86%);
+}
+/* Draggable element */
+.main-content::-webkit-scrollbar-thumb {
+  border-radius: 12px;
+  background-color: hsl(348, 100%, 61%);
+}
+
+/* Scrollbar on dark theme */
+
+.main-content-dark {
+  overflow-x: scroll;
+  max-width: 100vw;
+  scrollbar-width: thin;
+  scrollbar-color: hsl(348, 100%, 61%) hsl(0, 0%, 4%); /* scroll thumb & track */
+}
+/* Whole scrollbar container */
+.main-content-dark::-webkit-scrollbar {
+  height: 8px;
+  border-radius: 12px;
+  background-color: hsl(0, 0%, 4%);
+}
+/* Where the scrollbar moves on */
+.main-content-dark::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: hsl(0, 0%, 4%);
+}
+/* Draggable element */
+.main-content-dark::-webkit-scrollbar-thumb {
+  border-radius: 12px;
+  background-color: hsl(348, 100%, 61%);
+}
+
+/* Recipe's card */
+.recipe {
+  max-height: 600px;
 }

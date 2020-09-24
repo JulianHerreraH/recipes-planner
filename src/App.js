@@ -11,9 +11,9 @@ function App() {
   const theme = context.isLightTheme ? context.light : context.dark;
   return (
     <Router>
-      <div className={`${theme}`}>
+      <div className={`${theme} full-height`}>
         <Navbar />
-        <div className="container">
+        <div className="container is-fluid">
           <Switch>
             <Route exact path="/" component={RecipeList} />
             <Route path="/favorites" component={Favorites} />
