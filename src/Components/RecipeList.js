@@ -165,6 +165,7 @@ function RecipeList() {
             onDragOver={(e) => onDragOver(e)}
             onDrop={(e) => onDrop(e, day)}
             key={day}
+            className="flipped"
           >
             <RenderColumn day={day} recipes={dayRecipes} context={context} />
           </div>

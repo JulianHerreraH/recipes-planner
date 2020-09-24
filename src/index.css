@@ -36,10 +36,19 @@ code {
   max-width: 100vw;
   scrollbar-width: thin;
   scrollbar-color: hsl(348, 100%, 61%) hsl(0, 0%, 86%);
+  transform: rotateX(180deg);
+  -ms-transform: rotateX(180deg); /* IE 9 */
+  -webkit-transform: rotateX(180deg); /* Safari and Chrome */
+}
+/* Flip the whole  */
+.flipped {
+  transform: rotateX(180deg);
+  -ms-transform: rotateX(180deg); /* IE 9 */
+  -webkit-transform: rotateX(180deg); /* Safari and Chrome */
 }
 /* Whole scrollbar container */
 .main-content::-webkit-scrollbar {
-  height: 8px;
+  height: 7px;
   border-radius: 12px;
   background-color: hsl(0, 0%, 86%);
 }
@@ -61,10 +70,13 @@ code {
   max-width: 100vw;
   scrollbar-width: thin;
   scrollbar-color: hsl(348, 100%, 61%) hsl(0, 0%, 4%); /* scroll thumb & track */
+  transform: rotateX(180deg);
+  -ms-transform: rotateX(180deg); /* IE 9 */
+  -webkit-transform: rotateX(180deg); /* Safari and Chrome */
 }
 /* Whole scrollbar container */
 .main-content-dark::-webkit-scrollbar {
-  height: 8px;
+  height: 7px;
   border-radius: 12px;
   background-color: hsl(0, 0%, 4%);
 }
@@ -82,4 +94,5 @@ code {
 /* Recipe's card */
 .recipe {
   max-height: 600px;
+  cursor: grab;
 }
