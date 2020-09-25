@@ -1,16 +1,23 @@
 
-import React from 'react';
+import React, {useContext} from 'react';
+import { ThemeContext } from '../context/ThemeContext';
 
 const onDragStart = (evt, id) => {
   console.log('dragstart: ', id);
   evt.dataTransfer.setData('id', id); // Set the recipe ID for the drag event
 };
 
-function RecipeCard ({ recipe, context }) {
+function RecipeCard ({ recipe, removeRecipe }) {
+  const context = useContext(ThemeContext);
   const theme = context.isLightTheme ? context.cardLight : context.cardDark;
   const titleColor = context.isLightTheme
     ? 'has-text-grey-dark'
     : 'has-text-white';
+
+  const deleteRecipe = (e) => {
+    e.preventDefault();
+    removeRecipe(recipe.id)
+  }
 
   return (
     <div
@@ -44,6 +51,9 @@ function RecipeCard ({ recipe, context }) {
             })}
           </ol>
         </div>
+        <button className="button is-warning is-small is-rounded mt-2 mx-2" onClick={deleteRecipe}>
+          Remove
+        </button>
       </div>
     </div>
   );

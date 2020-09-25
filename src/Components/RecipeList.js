@@ -7,7 +7,8 @@ const onDragOver = (evt) => {
   evt.preventDefault();
 };
 
-const RenderDayArticle = ({ context, day }) => {
+const RenderDayArticle = ({ day }) => {
+  const context = useContext(ThemeContext);
   const theme = context.isLightTheme ? context.cardLight : context.cardDark;
   return (
     <article className={`box ${theme} all-rounded has-text-centered`}>
@@ -16,12 +17,16 @@ const RenderDayArticle = ({ context, day }) => {
   );
 };
 
-const RenderColumn = ({ day, recipes, context }) => {
+const RenderColumn = ({ day, recipes, removeRecipe }) => {
   return (
     <div className={`tile is-parent is-vertical  droppable`}>
-      <RenderDayArticle context={context} day={day} key={day} />
-      {recipes.map((recipe) => (
-        <RecipeCard recipe={recipe} context={context} key={recipe.id} />
+      <RenderDayArticle day={day} key={day} />
+      {recipes.map(recipe => (
+        <RecipeCard
+          recipe={recipe}
+          removeRecipe={removeRecipe}
+          key={recipe.id}
+        />
       ))}
     </div>
   );
@@ -116,6 +121,10 @@ function RecipeList() {
     setRecipes(prevState => ([...prevState, {...recipe, id}]));
   }
 
+  const removeRecipe = (id) => {
+    setRecipes(recipes.filter(recipe => recipe.id !== id))
+  }
+
   return (
     <>
       <NewRecipeForm
@@ -134,7 +143,11 @@ function RecipeList() {
               key={day}
               className="flipped"
             >
-              <RenderColumn day={day} recipes={dayRecipes} context={context} />
+              <RenderColumn 
+                day={day} 
+                recipes={dayRecipes} 
+                removeRecipe={removeRecipe}
+              />
             </div>
           );
         })}
