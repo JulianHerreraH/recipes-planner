@@ -20,7 +20,7 @@ const removeField = (e, recipe, setRecipe) => {
 };
 
 function NewRecipeForm(props) {
-  const { isModalOpen, setModal, days } = props;
+  const { isModalOpen, setModal, days, addRecipe } = props;
   const context = useContext(ThemeContext);
   const theme = context.isLightTheme ? context.cardLight : context.cardDark;
   const modalActive = isModalOpen ? 'is-active ' : '';
@@ -51,6 +51,7 @@ function NewRecipeForm(props) {
   const handleSubmit = e => {
     e.preventDefault();
     console.log(recipe);
+    addRecipe(recipe);
     resetForm(e);
   };
 
@@ -71,7 +72,7 @@ function NewRecipeForm(props) {
           <button
             className="delete"
             aria-label="close"
-            onClick={ resetForm }
+            onClick={resetForm}
           ></button>
         </header>
         <section className={`${theme} modal-card-body`}>
@@ -83,6 +84,7 @@ function NewRecipeForm(props) {
                   className="input"
                   type="text"
                   name="title"
+                  required
                   value={recipe.title}
                   onChange={onChange}
                   placeholder="Enter recipe title"
@@ -93,7 +95,15 @@ function NewRecipeForm(props) {
               <label className={`${theme} label`}>Day</label>
               <div className="control">
                 <div className="select">
-                  <select value={recipe.day} onChange={onChange} name="day">
+                  <select
+                    value={recipe.day}
+                    onChange={onChange}
+                    name="day"
+                    required
+                  >
+                    <option value="" defaultValue disabled hidden>
+                      Choose a day
+                    </option>
                     {days.map(day => (
                       <option key={day}>{day}</option>
                     ))}
@@ -127,6 +137,7 @@ function NewRecipeForm(props) {
                       type="text"
                       value={ing}
                       name="ingredients"
+                      required
                       onChange={e => arrayChange(e, ndx)}
                       key={ndx}
                       placeholder="Enter ingredient"
@@ -161,6 +172,7 @@ function NewRecipeForm(props) {
                       type="text"
                       value={step}
                       name="steps"
+                      required
                       onChange={e => arrayChange(e, ndx)}
                       key={ndx}
                       placeholder="Enter step"

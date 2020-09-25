@@ -158,12 +158,18 @@ function RecipeList() {
     setRecipes([...recipesN]);
   };
 
+  const addRecipe = (recipe) => {
+    const id = recipes.length 
+    setRecipes(prevState => ([...prevState, {...recipe, id}]));
+  }
+
   return (
     <>
       <NewRecipeForm
         isModalOpen={isModalOpen}
         setModal={setModal}
         days={days}
+        addRecipe={addRecipe}
       />
       <div className={`tile is-ancestor mt-3 ${theme}`}>
         {days.map(day => {
