@@ -2,9 +2,8 @@ import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { ThemeContext } from "../context/ThemeContext";
 
-
-function Navbar(props) {
-  const [isNavOpen, setNav] = useState(false)
+function Navbar() {
+  const [isNavOpen, setNav] = useState(false);
   const context = useContext(ThemeContext);
   const theme = context.isLightTheme ? context.navLight : context.navDark;
   const navClass = isNavOpen ? "is-active" : "";
@@ -26,7 +25,6 @@ function Navbar(props) {
           <span aria-hidden="true"></span>
         </div>
       </div>
-
       <div id="navMenu" className={`navbar-menu ${navClass}`}>
         <div className="navbar-start">
           <NavLink
@@ -51,13 +49,6 @@ function Navbar(props) {
           >
             Settings
           </NavLink>
-        </div>
-        <div className="navbar-end">
-          <div className="navbar-item">
-            <button className={`button is-danger is-rounded`}>
-              New
-            </button>
-          </div>
         </div>
       </div>
     </nav>

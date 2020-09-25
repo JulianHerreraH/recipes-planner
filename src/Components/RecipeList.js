@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
+import NewRecipeForm from "./NewRecipeForm";
 
 const onDragOver = (evt) => {
   evt.preventDefault();
@@ -141,6 +142,7 @@ function RecipeList() {
     "Friday",
     "Saturday",
   ]);
+  const [isModalOpen, setModal] = useState(false)
   const context = useContext(ThemeContext);
   const theme = context.isLightTheme ? "main-content" : "main-content-dark";
 
@@ -157,22 +159,36 @@ function RecipeList() {
   };
 
   return (
-    <div className={`tile is-ancestor mt-3 ${theme}`}>
-      {days.map((day) => {
-        const dayRecipes = recipes.filter((recipe) => recipe.day === day);
-        return (
-          <div
-            onDragOver={(e) => onDragOver(e)}
-            onDrop={(e) => onDrop(e, day)}
-            key={day}
-            className="flipped"
-          >
-            <RenderColumn day={day} recipes={dayRecipes} context={context} />
-          </div>
-        );
-      })}
-    </div>
+    <>
+      <NewRecipeForm
+        isModalOpen={isModalOpen}
+        setModal={setModal}
+        days={days}
+      />
+      <div className={`tile is-ancestor mt-3 ${theme}`}>
+        {days.map(day => {
+          const dayRecipes = recipes.filter(recipe => recipe.day === day);
+          return (
+            <div
+              onDragOver={e => onDragOver(e)}
+              onDrop={e => onDrop(e, day)}
+              key={day}
+              className="flipped"
+            >
+              <RenderColumn day={day} recipes={dayRecipes} context={context} />
+            </div>
+          );
+        })}
+      </div>
+      <button
+        onClick={() => setModal(!isModalOpen)}
+        className={`button is-danger is-rounded is-medium floating`}
+      >
+        New
+      </button>
+    </>
   );
+  
 }
 
 export default RecipeList;

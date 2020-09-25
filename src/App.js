@@ -13,7 +13,7 @@ function App() {
     <Router>
       <div className={`${theme} full-height`}>
         <Navbar />
-        <div className="container is-fluid">
+        <div className={`${theme} container is-fluid`}>
           <Switch>
             <Route exact path="/" component={RecipeList} />
             <Route path="/favorites" component={Favorites} />
