@@ -30,6 +30,7 @@ function NewRecipeForm(props) {
     ingredients: [''],
     steps: [''],
     day: '',
+    isFav: false
   };
 
   const [recipe, setRecipe] = useState(initialState);

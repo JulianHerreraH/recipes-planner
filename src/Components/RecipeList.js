@@ -20,14 +20,19 @@ const RenderDayArticle = ({ day, total }) => {
   );
 };
 
-const RenderColumn = ({ day, recipes, removeRecipe }) => {
+const RenderColumn = ({ day, recipes, removeRecipe, favRecipe }) => {
+  // Show favorites at the top
+  recipes.sort((a, b) => {
+    return (a.isFav === b.isFav) ? 0 : a.isFav? -1 : 1;
+  })
   return (
-    <div className={`tile is-parent is-vertical  droppable`}>
+    <div className="tile is-parent is-vertical  droppable">
       <RenderDayArticle day={day} key={day} total={recipes.length} />
       {recipes.map(recipe => (
         <RecipeCard
           recipe={recipe}
           removeRecipe={removeRecipe}
+          favRecipe={favRecipe}
           key={recipe.id}
         />
       ))}
@@ -79,6 +84,14 @@ function RecipeList() {
     setRecipes(recipes.filter(recipe => recipe.id !== id))
   }
 
+  const favRecipe = (id) => {
+    setRecipes(recipes.filter(recipe => {
+      if (recipe.id === id)
+        recipe.isFav = !recipe.isFav;
+      return recipe;
+    }));
+  }
+
   return (
     <>
       <NewRecipeForm
@@ -101,6 +114,7 @@ function RecipeList() {
                 day={day} 
                 recipes={dayRecipes} 
                 removeRecipe={removeRecipe}
+                favRecipe={favRecipe}
               />
             </div>
           );
@@ -108,7 +122,7 @@ function RecipeList() {
       </div>
       <button
         onClick={() => setModal(!isModalOpen)}
-        className={`button is-danger is-rounded is-medium floating`}
+        className="button is-danger is-rounded is-medium floating"
       >
         New
       </button>

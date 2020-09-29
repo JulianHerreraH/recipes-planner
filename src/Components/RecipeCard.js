@@ -7,16 +7,23 @@ const onDragStart = (evt, id) => {
   evt.dataTransfer.setData('id', id); // Set the recipe ID for the drag event
 };
 
-function RecipeCard ({ recipe, removeRecipe }) {
+function RecipeCard ({ recipe, removeRecipe, favRecipe }) {
   const context = useContext(ThemeContext);
   const theme = context.isLightTheme ? context.cardLight : context.cardDark;
   const titleColor = context.isLightTheme
     ? 'has-text-grey-dark'
     : 'has-text-white';
 
+  const favColor = recipe.isFav ? 'is-danger' : 'is-danger is-light';
+
   const deleteRecipe = (e) => {
     e.preventDefault();
-    removeRecipe(recipe.id)
+    removeRecipe(recipe.id);
+  }
+
+  const favoriteRecipe = (e) => {
+    e.preventDefault();
+    favRecipe(recipe.id);
   }
 
   return (
@@ -27,7 +34,10 @@ function RecipeCard ({ recipe, removeRecipe }) {
     >
       <header className="card-header">
         <p className={` ${titleColor} card-header-title`}>{recipe.title}</p>
-        <button className="button is-danger is-small is-rounded mt-2 mx-2">
+        <button
+          className={`button ${favColor} is-small is-rounded mt-2 mx-2`}
+          onClick={favoriteRecipe}
+        >
           ♥
         </button>
       </header>
@@ -51,7 +61,10 @@ function RecipeCard ({ recipe, removeRecipe }) {
             })}
           </ol>
         </div>
-        <button className="button is-warning is-small is-rounded mt-2 mx-2" onClick={deleteRecipe}>
+        <button
+          className="button is-warning is-small is-rounded mt-2 mx-2"
+          onClick={deleteRecipe}
+        >
           Remove
         </button>
       </div>
