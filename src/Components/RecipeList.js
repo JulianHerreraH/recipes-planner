@@ -7,12 +7,15 @@ const onDragOver = (evt) => {
   evt.preventDefault();
 };
 
-const RenderDayArticle = ({ day }) => {
+const RenderDayArticle = ({ day, total }) => {
   const context = useContext(ThemeContext);
   const theme = context.isLightTheme ? context.cardLight : context.cardDark;
   return (
     <article className={`box ${theme} all-rounded has-text-centered`}>
-      <p className="is-size-5-tablet is-uppercase">{day}</p>
+      <div className="is-size-5-tablet is-uppercase">{day}
+      
+      <span className="tag is-rounded is-small is-danger mx-1">{total}</span>
+      </div>
     </article>
   );
 };
@@ -20,7 +23,7 @@ const RenderDayArticle = ({ day }) => {
 const RenderColumn = ({ day, recipes, removeRecipe }) => {
   return (
     <div className={`tile is-parent is-vertical  droppable`}>
-      <RenderDayArticle day={day} key={day} />
+      <RenderDayArticle day={day} key={day} total={recipes.length} />
       {recipes.map(recipe => (
         <RecipeCard
           recipe={recipe}
