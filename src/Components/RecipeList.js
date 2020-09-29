@@ -58,7 +58,7 @@ function RecipeList() {
 
   useEffect(() => {
     localStorage.setItem('recipes', JSON.stringify(recipes));
-  }, [recipes])
+  }, [recipes]);
 
   const context = useContext(ThemeContext);
   const theme = context.isLightTheme ? "main-content" : "main-content-dark";
