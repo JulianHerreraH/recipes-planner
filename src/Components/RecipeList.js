@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 import NewRecipeForm from "./NewRecipeForm";
 import RecipeCard from './RecipeCard'
@@ -36,64 +36,10 @@ const RenderColumn = ({ day, recipes, removeRecipe }) => {
 };
 
 function RecipeList() {
-  const [recipes, setRecipes] = useState([
-    {
-      id: 0,
-      title: "Arroz con pollo",
-      ingredients: ["arroz", "pollo"],
-      steps: ["herviri pollo", "cocinar arroz"],
-      day: "Sunday",
-    },
-    {
-      id: 1,
-      title: "Pizza",
-      ingredients: [],
-      steps: [],
-      day: "Monday",
-    },
-    {
-      id: 2,
-      title: "Bucatini carbonara y ensalada",
-      ingredients: ["bucatini", "parmesano", "cerdo", "huevos"],
-      steps: ["ver video", "ver receta aderezo", "2", "3", "4"],
-      day: "Tuesday",
-    },
-    {
-      id: 3,
-      title: "Tortas de atun",
-      ingredients: ["atun", "papa"],
-      steps: ["ver receta", "calentar frijol"],
-      day: "Wednesday",
-    },
-    {
-      id: 4,
-      title: "Pollo a la matequilla",
-      ingredients: ["arroz", "pollo"],
-      steps: ["herviri pollo", "cocinar arroz"],
-      day: "Thursday",
-    },
-    {
-      id: 5,
-      title: "Tornillos vegetarianos",
-      ingredients: ["arroz", "pollo"],
-      steps: ["herviri pollo", "cocinar arroz"],
-      day: "Friday",
-    },
-    {
-      id: 6,
-      title: "Pensar",
-      ingredients: ["arroz", "pollo"],
-      steps: ["herviri pollo", "cocinar arroz"],
-      day: "Saturday",
-    },
-    {
-      id: 7,
-      title: "Tornillos vegetarianos",
-      ingredients: ["arroz", "pollo"],
-      steps: ["herviri pollo", "cocinar arroz"],
-      day: "Tuesday",
-    },
-  ]);
+  const [recipes, setRecipes] = useState(() => {
+    const localRecipes = localStorage.getItem('recipes');
+    return localRecipes ? JSON.parse(localRecipes) : [];
+  });
   const [days] = useState([
     "Sunday",
     "Monday",
@@ -104,6 +50,11 @@ function RecipeList() {
     "Saturday",
   ]);
   const [isModalOpen, setModal] = useState(false)
+
+  useEffect(() => {
+    localStorage.setItem('recipes', JSON.stringify(recipes));
+  }, [recipes])
+
   const context = useContext(ThemeContext);
   const theme = context.isLightTheme ? "main-content" : "main-content-dark";
 
