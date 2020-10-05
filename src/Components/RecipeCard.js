@@ -1,5 +1,4 @@
-
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import { ThemeContext } from '../context/ThemeContext';
 
 const onDragStart = (evt, id) => {
@@ -7,7 +6,7 @@ const onDragStart = (evt, id) => {
   evt.dataTransfer.setData('id', id); // Set the recipe ID for the drag event
 };
 
-function RecipeCard ({ recipe, removeRecipe, favRecipe }) {
+function RecipeCard({ recipe, removeRecipe, favRecipe }) {
   const context = useContext(ThemeContext);
   const theme = context.isLightTheme ? context.cardLight : context.cardDark;
   const titleColor = context.isLightTheme
@@ -16,19 +15,19 @@ function RecipeCard ({ recipe, removeRecipe, favRecipe }) {
 
   const favColor = recipe.isFav ? 'is-danger' : 'is-danger is-light';
 
-  const deleteRecipe = (e) => {
+  const deleteRecipe = e => {
     e.preventDefault();
     removeRecipe(recipe.id);
-  }
+  };
 
-  const favoriteRecipe = (e) => {
+  const favoriteRecipe = e => {
     e.preventDefault();
     favRecipe(recipe.id);
-  }
+  };
 
   return (
     <div
-      className={`${theme} card tile is-child all-rounded my-2 recipe draggable`}
+      className={`${theme} card is-child all-rounded my-2 recipe draggable`}
       draggable
       onDragStart={e => onDragStart(e, recipe.id)}
     >
@@ -70,6 +69,6 @@ function RecipeCard ({ recipe, removeRecipe, favRecipe }) {
       </div>
     </div>
   );
-};
+}
 
 export default RecipeCard;
