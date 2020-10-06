@@ -12,10 +12,14 @@ function App() {
     <Router>
       <div className={`${theme} full-height`}>
         <Navbar />
-        <div className={`${theme} container is-fluid`}>
+        <div className={theme}>
           <Switch>
-            <Route exact path="/" component={RecipeList} />
-            <Route path="/settings" component={Settings} />
+            <Route exact path="/"> 
+              <RecipeList />
+            </Route>
+            <Route path="/settings">
+              <Settings />
+            </Route>
           </Switch>
         </div>
       </div>

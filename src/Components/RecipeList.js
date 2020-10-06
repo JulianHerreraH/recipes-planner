@@ -93,7 +93,7 @@ function RecipeList() {
   }
 
   return (
-    <>
+    <div className="container is-fluid">
       <NewRecipeForm
         isModalOpen={isModalOpen}
         setModal={setModal}
@@ -110,9 +110,9 @@ function RecipeList() {
               key={day}
               className="flipped"
             >
-              <RenderColumn 
-                day={day} 
-                recipes={dayRecipes} 
+              <RenderColumn
+                day={day}
+                recipes={dayRecipes}
                 removeRecipe={removeRecipe}
                 favRecipe={favRecipe}
               />
@@ -126,7 +126,7 @@ function RecipeList() {
       >
         New
       </button>
-    </>
+    </div>
   );
   
 }

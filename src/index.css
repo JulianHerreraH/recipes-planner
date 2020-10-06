@@ -37,6 +37,7 @@ a:hover {
   max-width: 100vw;
   scrollbar-width: thin;
   scrollbar-color: hsl(348, 100%, 61%) hsl(0, 0%, 86%);
+  justify-content: space-evenly;
   transform: rotateX(180deg);
   -ms-transform: rotateX(180deg); /* IE 9 */
   -webkit-transform: rotateX(180deg); /* Safari and Chrome */
@@ -71,6 +72,7 @@ a:hover {
   max-width: 100vw;
   scrollbar-width: thin;
   scrollbar-color: hsl(348, 100%, 61%) hsl(0, 0%, 4%); /* scroll thumb & track */
+  justify-content: space-evenly;
   transform: rotateX(180deg);
   -ms-transform: rotateX(180deg); /* IE 9 */
   -webkit-transform: rotateX(180deg); /* Safari and Chrome */

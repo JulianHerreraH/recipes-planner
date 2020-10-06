@@ -15,9 +15,9 @@ const ThemeToggler = (props) => {
 
 function Settings() {
   return (
-    <div>
+    <div className="container mt-3">
       <h1 className="is-size-3 has-text-weight-bold">Page Settings</h1>
-      <div className="columns">
+      <div className="columns mt-2">
         <div className="column is-three-quarters">
           <p className="is-size-5"> Change color theme: </p>
         </div>
