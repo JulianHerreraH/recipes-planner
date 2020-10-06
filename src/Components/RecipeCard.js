@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from '../context/ThemeContext';
+import { mdiHeart, mdiDelete } from '@mdi/js';
+import Icon from '@mdi/react';
 
 const onDragStart = (evt, id) => {
   console.log('dragstart: ', id);
@@ -13,7 +15,7 @@ function RecipeCard({ recipe, removeRecipe, favRecipe }) {
     ? 'has-text-grey-dark'
     : 'has-text-white';
 
-  const favColor = recipe.isFav ? 'is-danger' : 'is-danger is-light';
+  const favColor = recipe.isFav ? 'main-color' : '';
 
   const deleteRecipe = e => {
     e.preventDefault();
@@ -33,12 +35,14 @@ function RecipeCard({ recipe, removeRecipe, favRecipe }) {
     >
       <header className="card-header">
         <p className={` ${titleColor} card-header-title`}>{recipe.title}</p>
-        <button
-          className={`button ${favColor} is-small is-rounded mt-2 mx-2`}
-          onClick={favoriteRecipe}
-        >
-          ♥
-        </button>
+        <div className={`${favColor} p-1`}>
+          <Icon
+            path={mdiHeart}
+            size={1}
+            className="mt-2"
+            onClick={favoriteRecipe}
+          />
+        </div>
       </header>
       <div className="card-content">
         <div className="content">
@@ -61,9 +65,10 @@ function RecipeCard({ recipe, removeRecipe, favRecipe }) {
           </ol>
         </div>
         <button
-          className="button is-warning is-small is-rounded mt-2 mx-2"
+          className="button is-danger is-light is-fullwidth has-text-centered"
           onClick={deleteRecipe}
         >
+          <Icon path={mdiDelete} size={1} />
           Remove
         </button>
       </div>
