@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import Settings from "./Components/Settings";
 import RecipeList from "./Components/RecipeList";
+import BookmarkList from "./Components/BookmarkList"
 import { ThemeContext } from "./context/ThemeContext";
 
 function App() {
@@ -14,13 +15,16 @@ function App() {
         <Navbar />
         <div className={theme}>
           <Switch>
-            <Route exact path="/"> 
+            <Route exact path="/">
               <RecipeList />
             </Route>
             <Route path="/settings">
               <Settings />
             </Route>
           </Switch>
+          <Route path="/bookmarks">
+            <BookmarkList />
+          </Route>
         </div>
       </div>
     </Router>

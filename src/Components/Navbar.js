@@ -36,6 +36,13 @@ function Navbar() {
             Home
           </NavLink>
           <NavLink
+            to="/bookmarks"
+            className="navbar-item"
+            activeClassName="has-text-weight-semibold is-uppercase"
+          >
+            Bookmarks
+          </NavLink>
+          <NavLink
             to="/settings"
             className="navbar-item"
             activeClassName="has-text-weight-semibold is-uppercase"
